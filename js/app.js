@@ -1,12 +1,12 @@
 // Enemies our player must avoid
-var Enemy = function(locx, locy) {
+var Enemy = function(locy) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x = locx;
+    this.x = 0;
     this.y = locy;
     this.dx = this.randomize(1,5);    
     console.log(this.dx);
@@ -54,7 +54,7 @@ Player.prototype.handleInput = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [new Enemy(0,60,4), new Enemy(0,145,3), new Enemy(0,230,2)];
+var allEnemies = [new Enemy(60), new Enemy(145), new Enemy(230)];
 
 var player = new Player();
 
