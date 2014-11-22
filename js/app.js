@@ -1,15 +1,17 @@
 // Enemies our player must avoid
-var Enemy = function(locy) {
+var Enemy = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.firstTrackY = 60;
+    this.dTrack = 85;
     this.x = 0;
-    this.y = locy;
-    this.dx = this.randomize(1,5);    
-    console.log(this.dx);
+    this.y = this.randomizeRoad();
+    this.dx = this.randomizeSpeed(1,5);
+    console.log(this.y);
 }
 
 // Update the enemy's position, required method for game
@@ -21,8 +23,9 @@ Enemy.prototype.update = function(dt) {
     this.x = this.x + this.dx;
     if (this.x > canvas.width) {
         this.x = -10;
-        this.dx = this.randomize(1,5);
-        console.log(this.dx);
+        this.y = this.randomizeRoad();
+        this.dx = this.randomizeSpeed(1,5);
+        console.log(this.y);
     }
 }
 
@@ -31,8 +34,29 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 // Bug speed rendomizer
-Enemy.prototype.randomize = function(min, max) {
-    return Math.random() * (max - min) + min;
+Enemy.prototype.randomize = function(max, min) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+Enemy.prototype.randomizeSpeed = function(min, max) {
+    return this.randomize(min,max);
+}
+Enemy.prototype.randomizeRoad = function() {
+    var track = this.randomize(0,4);
+    console.log(track);
+
+    if (track = 1) {
+        return this.firstTrackY;
+    }
+    else if (track = 2) {
+        return this.firstTrackY + this.dTrack;
+    }
+    else if (track = 3) {
+        return this.firstTrackY + this.dTrack*2;
+    }
+    else {
+        console.log("Error in randomizeRoad");
+        return this.firstTrackY;
+    }
 }
 
 // Now write your own player class
