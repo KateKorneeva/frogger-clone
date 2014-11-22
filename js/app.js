@@ -45,13 +45,13 @@ Enemy.prototype.randomizeRoad = function() {
     var locY;
     console.log(track);
 
-    if (track = 1) {
+    if (track === 1) {
         locY = this.firstTrackY;
     }
-    else if (track = 2) {
+    else if (track === 2) {
         locY = this.firstTrackY + this.dTrack;
     }
-    else if (track = 3) {
+    else if (track === 3) {
         locY = this.firstTrackY + this.dTrack*2;
     }
     else {
