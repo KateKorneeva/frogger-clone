@@ -11,7 +11,7 @@ var Enemy = function() {
     this.x = 0;
     this.y = this.randomizeRoad();
     this.dx = this.randomizeSpeed(1,5);
-    console.log(this.y);
+    // console.log(this.y);
 }
 
 // Update the enemy's position, required method for game
@@ -25,7 +25,7 @@ Enemy.prototype.update = function(dt) {
         this.x = -10;
         this.y = this.randomizeRoad();
         this.dx = this.randomizeSpeed(1,5);
-        console.log(this.y);
+        // console.log(this.y);
     }
 }
 
@@ -42,21 +42,23 @@ Enemy.prototype.randomizeSpeed = function(min, max) {
 }
 Enemy.prototype.randomizeRoad = function() {
     var track = this.randomize(0,4);
+    var locY;
     console.log(track);
 
     if (track = 1) {
-        return this.firstTrackY;
+        locY = this.firstTrackY;
     }
     else if (track = 2) {
-        return this.firstTrackY + this.dTrack;
+        locY = this.firstTrackY + this.dTrack;
     }
     else if (track = 3) {
-        return this.firstTrackY + this.dTrack*2;
+        locY = this.firstTrackY + this.dTrack*2;
     }
     else {
         console.log("Error in randomizeRoad");
-        return this.firstTrackY;
+        locY = this.firstTrackY;
     }
+    return locY;
 }
 
 // Now write your own player class
