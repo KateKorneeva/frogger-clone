@@ -67,6 +67,7 @@ Enemy.prototype.startBug = function() {
 var Player = function() {
     this.sprite = 'images/char-boy.png';
     this.startPlayer();
+    this.handleInput();
 }
 Player.prototype.update = function(dt) {
 
@@ -74,8 +75,21 @@ Player.prototype.update = function(dt) {
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
-Player.prototype.handleInput = function() {
-
+Player.prototype.handleInput = function(key) {
+    var dx = 100;
+    var dy = 85;
+    if (key === 'left') {
+        this.x = this.x - dx;
+    }
+    else if (key === 'right') {
+        this.x = this.x + dx;
+    }
+    else if (key === 'up') {
+        this.y = this.y - dy;
+    }
+    else if (key === 'down') {
+        this.y = this.y + dy;
+    }
 }
 Player.prototype.startPlayer = function() {
     this.x = 200;
