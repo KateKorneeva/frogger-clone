@@ -27,13 +27,15 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
-// Bug speed rendomizer
+// Default random function
 Enemy.prototype.randomize = function(max, min) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+// Bug speed randomization
 Enemy.prototype.randomizeSpeed = function(min, max) {
     return this.randomize(min,max);
 }
+// Randomization of road choice
 Enemy.prototype.randomizeRoad = function() {
     var track = this.randomize(0,4);
     var locY;
@@ -51,6 +53,8 @@ Enemy.prototype.randomizeRoad = function() {
     }
     return locY;
 }
+// Initialization of new position and speed for
+// bugs that have run to the end of the field
 Enemy.prototype.startBug = function() {
     this.x = -10;
     this.y = this.randomizeRoad();
@@ -76,7 +80,7 @@ Player.prototype.handleInput = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [new Enemy(60), new Enemy(145), new Enemy(230)];
+var allEnemies = [new Enemy(), new Enemy(), new Enemy()];
 
 var player = new Player();
 
