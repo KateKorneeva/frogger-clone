@@ -66,6 +66,7 @@ Enemy.prototype.startBug = function() {
 // a handleInput() method.
 var Player = function() {
     this.sprite = 'images/char-boy.png';
+    this.startPlayer();
 }
 Player.prototype.update = function(dt) {
 
@@ -75,6 +76,10 @@ Player.prototype.render = function() {
 }
 Player.prototype.handleInput = function() {
 
+}
+Player.prototype.startPlayer = function() {
+    this.x = 200;
+    this.y = 400;
 }
 
 // Now instantiate your objects.
