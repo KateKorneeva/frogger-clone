@@ -8,10 +8,7 @@ var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
     this.firstTrackY = 60;
     this.dTrack = 85;
-    this.x = 0;
-    this.y = this.randomizeRoad();
-    this.dx = this.randomizeSpeed(1,5);
-    // console.log(this.y);
+    this.startBug();
 }
 
 // Update the enemy's position, required method for game
@@ -22,10 +19,7 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x = this.x + this.dx;
     if (this.x > canvas.width) {
-        this.x = -10;
-        this.y = this.randomizeRoad();
-        this.dx = this.randomizeSpeed(1,5);
-        // console.log(this.y);
+        this.startBug();
     }
 }
 
@@ -43,7 +37,6 @@ Enemy.prototype.randomizeSpeed = function(min, max) {
 Enemy.prototype.randomizeRoad = function() {
     var track = this.randomize(0,4);
     var locY;
-    console.log(track);
 
     if (track === 1) {
         locY = this.firstTrackY;
@@ -55,10 +48,13 @@ Enemy.prototype.randomizeRoad = function() {
         locY = this.firstTrackY + this.dTrack*2;
     }
     else {
-        console.log("Error in randomizeRoad");
-        locY = this.firstTrackY;
     }
     return locY;
+}
+Enemy.prototype.startBug = function() {
+    this.x = -10;
+    this.y = this.randomizeRoad();
+    this.dx = this.randomizeSpeed(1,5);
 }
 
 // Now write your own player class
