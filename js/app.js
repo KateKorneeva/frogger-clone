@@ -76,24 +76,44 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 Player.prototype.handleInput = function(key) {
-    var dx = 100;
-    var dy = 85;
+    this.dx = 100;
+    this.dy = 85;
     if (key === 'left') {
-        this.x = this.x - dx;
+        if (this.x > 0) {
+            this.x = this.x - this.dx;
+        }
+        else {
+            this.x = this.x;
+        }
     }
     else if (key === 'right') {
-        this.x = this.x + dx;
+        if (this.x < canvas.width - 2*this.dx) {
+            this.x = this.x + this.dx;
+        }
+        else {
+            this.x = this.x;
+        }    
     }
     else if (key === 'up') {
-        this.y = this.y - dy;
+        if (this.y > 0) {
+            this.y = this.y - this.dy;
+        }
+        else {
+            this.y = this.y;
+        }
     }
     else if (key === 'down') {
-        this.y = this.y + dy;
+        if (this.y < canvas.height - 3*this.dy) {
+            this.y = this.y + this.dy;
+        }
+        else {
+            this.y = this.y;
+        }
     }
 }
 Player.prototype.startPlayer = function() {
     this.x = 200;
-    this.y = 400;
+    this.y = 415;
 }
 
 // Now instantiate your objects.
