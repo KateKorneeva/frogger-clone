@@ -56,7 +56,7 @@ Enemy.prototype.randomizeRoad = function() {
 // Initialization of new position and speed for
 // bugs that have run to the end of the field
 Enemy.prototype.startBug = function() {
-    this.x = -10;
+    this.x = -50;
     this.y = this.randomizeRoad();
     this.dx = this.randomizeSpeed(1,5);
 }
