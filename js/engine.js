@@ -98,12 +98,14 @@ var Engine = (function(global) {
     }
 
     function checkCollisions() {
-
-        if ((player.x === allEnemies[0].x) || 
-            (player.x === allEnemies[1].x) || 
-            (player.x === allEnemies[2].x) ) 
-        {
-            console.log(player.y);
+        for (var en in allEnemies){
+            if ( ( player.x <= allEnemies[en].x + 60 ) && 
+                ( player.x > allEnemies[en].x - allEnemies[en].dx) &&
+                ( player.y === allEnemies[en].y ) ) 
+            {
+                console.log( allEnemies[en].x - allEnemies[en].dx );
+                player.startPlayer();
+            }
         }
     }
 
