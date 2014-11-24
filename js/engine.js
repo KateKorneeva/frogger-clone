@@ -103,7 +103,6 @@ var Engine = (function(global) {
                 ( player.x > allEnemies[en].x - allEnemies[en].dx) &&
                 ( player.y === allEnemies[en].y ) ) 
             {
-                console.log( allEnemies[en].x - allEnemies[en].dx );
                 player.startPlayer();
             }
         }

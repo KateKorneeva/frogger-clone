@@ -39,17 +39,10 @@ Enemy.prototype.randomizeSpeed = function(min, max) {
 Enemy.prototype.randomizeRoad = function() {
     var track = this.randomize(0,4);
     var locY;
-
-    if (track === 1) {
-        locY = this.firstTrackY;
-    }
-    else if (track === 2) {
-        locY = this.firstTrackY + this.dTrack;
-    }
-    else if (track === 3) {
-        locY = this.firstTrackY + this.dTrack*2;
-    }
-    else {
+    for (var i = 0; i < 3; i++) {
+        if (track === (i+1) ) {
+            locY = this.firstTrackY + ( this.dTrack * i );
+        }    
     }
     return locY;
 }
