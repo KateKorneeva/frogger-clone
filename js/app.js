@@ -71,38 +71,44 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(key) {
     this.dx = 100;
     this.dy = 85;
-    if (key === 'left') {
+    switch (key) {
+    case 'left': 
         if (this.x > 0) {
             this.x = this.x - this.dx;
         }
         else {
             this.x = this.x;
-        }
-    }
-    else if (key === 'right') {
+        }    
+        break;
+    case 'right':
         if (this.x < canvas.width - 2*this.dx) {
             this.x = this.x + this.dx;
         }
         else {
             this.x = this.x;
-        }    
-    }
-    else if (key === 'up') {
+        }
+        break;
+    case 'up':
         if (this.y > 0) {
             this.y = this.y - this.dy;
         }
         else {
             this.y = this.y;
         }
-    }
-    else if (key === 'down') {
+        break;
+    case 'down':
         if (this.y < canvas.height - 3*this.dy) {
             this.y = this.y + this.dy;
         }
         else {
             this.y = this.y;
         }
+        break;
+    default:
+        this.x = this.x;
+        this.y = this.y;
     }
+
 }
 Player.prototype.startPlayer = function() {
     this.x = 200;
