@@ -1,3 +1,6 @@
+var trackWidth = 100;
+var trackHeight = 85;
+
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -7,7 +10,7 @@ var Enemy = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     this.firstTrackY = 75;
-    this.dTrack = 85;
+    this.dTrack = trackHeight;
     this.startBug();
 }
 
@@ -27,17 +30,15 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
-// Default random function
-Enemy.prototype.randomize = function(max, min) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+
 // Bug speed randomization
 Enemy.prototype.randomizeSpeed = function(min, max) {
-    return this.randomize(min,max);
+    return randomize(min,max);
 }
+
 // Randomization of road choice
 Enemy.prototype.randomizeRoad = function() {
-    var track = this.randomize(0,4);
+    var track = randomize(0,4);
     var locY;
     for (var i = 0; i < 3; i++) {
         if (track === (i+1) ) {
@@ -46,6 +47,7 @@ Enemy.prototype.randomizeRoad = function() {
     }
     return locY;
 }
+
 // Initialization of new position and speed for
 // bugs that have run to the end of the field
 Enemy.prototype.startBug = function() {
@@ -59,18 +61,23 @@ Enemy.prototype.startBug = function() {
 // a handleInput() method.
 var Player = function() {
     this.sprite = 'images/char-boy.png';
+    this.dScoreRow = 10;
+    this.score = 0;
     this.startPlayer();
     this.handleInput();
 }
+
 Player.prototype.update = function(dt) {
 
 }
+
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
+
 Player.prototype.handleInput = function(key) {
-    this.dx = 100;
-    this.dy = 85;
+    this.dx = trackWidth;
+    this.dy = trackHeight;
     switch (key) {
     case 'left': 
         if (this.x > 0) {
@@ -91,6 +98,7 @@ Player.prototype.handleInput = function(key) {
     case 'up':
         if (this.y > 0) {
             this.y = this.y - this.dy;
+            this.countScore(this.dScoreRow);
         }
         else {
             this.y = this.y;
@@ -108,11 +116,30 @@ Player.prototype.handleInput = function(key) {
         this.x = this.x;
         this.y = this.y;
     }
-
 }
+
 Player.prototype.startPlayer = function() {
     this.x = 200;
     this.y = 415;
+}
+
+Player.prototype.countScore = function(dScore) {
+    this.dScore = dScore;
+    this.score = this.score + this.dScore;
+    console.log(this.score);
+}
+
+var Gem = function() {
+}
+
+Gem.prototype.randomizeAppear = function() {
+    this.xCol = randomize(1,5);
+    this.yCol = randomize(1,5);
+}
+
+// Default global random function
+var randomize = function(max, min) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // Now instantiate your objects.
@@ -135,3 +162,4 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
