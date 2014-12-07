@@ -1,5 +1,7 @@
-var trackWidth = 100;
-var trackHeight = 85;
+var trackWidth = 101;
+var trackHeight = 83;
+var la = true;
+
 
 // Enemies our player must avoid
 var Enemy = function() {
@@ -9,7 +11,7 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.firstTrackY = 75;
+    this.firstTrackY = 76;
     this.dTrack = trackHeight;
     this.startBug();
 }
@@ -127,7 +129,6 @@ Player.prototype.startPlayer = function() {
 Player.prototype.countScore = function(dScore) {
     this.dScore = dScore;
     this.score = this.score + this.dScore;
-    console.log(this.score);
 }
 
 var Gem = function() {
@@ -139,15 +140,32 @@ var Gem = function() {
 
 Gem.prototype.randomizeAppear = function() {
     this.xCol = randomize(0,6) - 1;
-    this.x = this.xCol * trackWidth + 1;
+    this.x = this.xCol * trackWidth;
     this.yCol = randomize(0,4);
-    this.y = this.yCol * trackHeight - 35;
-    console.log(this.x + " " + this.y);
+    this.y = this.yCol * trackHeight - 25;
 }
 
 Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
+
+var GemOrange = function() {
+    Gem.call(this);
+    this.sprite = 'images/gem-orange.png';
+    this.dScoreGem = 30;
+}
+
+GemOrange.prototype = Object.create(Gem.prototype);
+GemOrange.prototype.constructor = Gem;
+
+var GemGreen = function() {
+    Gem.call(this);
+    this.sprite = 'images/gem-green.png';
+    this.dScoreGem = 40;
+}
+
+GemGreen.prototype = Object.create(Gem.prototype);
+GemGreen.prototype.constructor  = Gem;
 
 // Default global random function
 var randomize = function(max, min) {
@@ -161,7 +179,8 @@ var allEnemies = [new Enemy(), new Enemy(), new Enemy()];
 
 var player = new Player();
 
-var gem = new Gem();
+var gemOrange = new GemOrange();
+var gemGreen = new GemGreen();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

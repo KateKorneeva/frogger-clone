@@ -67,6 +67,7 @@ var Engine = (function(global) {
         reset();
         lastTime = Date.now();
         main();
+        var la = true;
     }
 
     /* This function is called by main (our game loop) and itself calls all
@@ -100,22 +101,33 @@ var Engine = (function(global) {
 
     function checkCollisions() {
         for (var en in allEnemies){
-            if ( ( player.x <= allEnemies[en].x + 60 ) && 
+            if ( ( player.x <= allEnemies[en].x + 60 ) &&
                 ( player.x > allEnemies[en].x - allEnemies[en].dx) &&
-                ( player.y === allEnemies[en].y ) ) 
+                ( player.y === allEnemies[en].y + 7 ) 
+                )
             {
                 player.startPlayer();
             }
         }
     }
+
     function checkGemPicks() {
-        if ( ( player.x <= gem.x + trackWidth ) && 
-            ( player.x > gem.x - trackWidth) &&
-            ( player.y <= gem.y + trackHeight ) &&
-            ( player.y > gem.y - trackHeight)) 
+        if ( ( player.x <= gemOrange.x + trackWidth ) &&
+            ( player.x > gemOrange.x - trackWidth) &&
+            ( player.y <= gemOrange.y + trackHeight ) &&
+            ( player.y > gemOrange.y - trackHeight))
         {
-            player.countScore(player.dScoreGem);
-            gem.randomizeAppear();
+            player.countScore(gemOrange.dScoreGem);
+            gemOrange.randomizeAppear();
+        }
+
+        if ( ( player.x <= gemGreen.x + trackWidth ) &&
+            ( player.x > gemGreen.x - trackWidth) &&
+            ( player.y <= gemGreen.y + trackHeight ) &&
+            ( player.y > gemGreen.y - trackHeight))
+        {
+            player.countScore(gemGreen.dScoreGem);
+            gemGreen.randomizeAppear();
         }
     }
 
@@ -175,7 +187,8 @@ var Engine = (function(global) {
         });
 
         player.render();
-        gem.render();
+        gemOrange.render();
+        gemGreen.render();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -194,9 +207,11 @@ var Engine = (function(global) {
         'images/stone-block.png',
         'images/water-block.png',
         'images/grass-block.png',
+        'images/gem-blue.png',
+        'images/gem-orange.png',
+        'images/gem-green.png',
         'images/enemy-bug.png',
-        'images/char-boy.png',
-        'images/gem-blue.png'
+        'images/char-boy.png'
     ]);
     Resources.onReady(init);
 
