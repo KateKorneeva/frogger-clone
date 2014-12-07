@@ -130,11 +130,22 @@ Player.prototype.countScore = function(dScore) {
 }
 
 var Gem = function() {
+    this.x = 0;
+    this.y = 0;
+    this.sprite = 'images/gem-blue.png';
+    this.randomizeAppear();
 }
 
 Gem.prototype.randomizeAppear = function() {
-    this.xCol = randomize(1,5);
-    this.yCol = randomize(1,5);
+    this.xCol = randomize(0,6) - 1;
+    this.x = this.xCol * trackWidth + 1;
+    this.yCol = randomize(0,4);
+    this.y = this.yCol * trackHeight - 35;
+    console.log(this.x + " " + this.y);
+}
+
+Gem.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
 // Default global random function
@@ -149,6 +160,7 @@ var allEnemies = [new Enemy(), new Enemy(), new Enemy()];
 
 var player = new Player();
 
+var gem = new Gem();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
