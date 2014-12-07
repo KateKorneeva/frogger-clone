@@ -112,19 +112,19 @@ var Engine = (function(global) {
     }
 
     function checkGemPicks() {
-        if ( ( player.x <= gemOrange.x + trackWidth ) &&
-            ( player.x > gemOrange.x - trackWidth) &&
-            ( player.y <= gemOrange.y + trackHeight ) &&
-            ( player.y > gemOrange.y - trackHeight))
+        if ( ( player.x <= gemOrange.x + trackWidth - gemOrange.gemFitX) &&
+            ( player.x > gemOrange.x - trackWidth + gemOrange.gemFitX) &&
+            ( player.y <= gemOrange.y + trackHeight - gemOrange.gemFitY ) &&
+            ( player.y > gemOrange.y - trackHeight + gemOrange.gemFitY ))
         {
             player.countScore(gemOrange.dScoreGem);
             gemOrange.randomizeAppear();
         }
 
-        if ( ( player.x <= gemGreen.x + trackWidth ) &&
-            ( player.x > gemGreen.x - trackWidth) &&
-            ( player.y <= gemGreen.y + trackHeight ) &&
-            ( player.y > gemGreen.y - trackHeight))
+        if ( ( player.x <= gemGreen.x + trackWidth - gemGreen.gemFitX) &&
+            ( player.x > gemGreen.x - trackWidth + gemGreen.gemFitX) &&
+            ( player.y <= gemGreen.y + trackHeight - gemGreen.gemFitY ) &&
+            ( player.y > gemGreen.y - trackHeight + gemGreen.gemFitY ))
         {
             player.countScore(gemGreen.dScoreGem);
             gemGreen.randomizeAppear();

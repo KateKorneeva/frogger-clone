@@ -134,7 +134,8 @@ Player.prototype.countScore = function(dScore) {
 var Gem = function() {
     this.x = 0;
     this.y = 0;
-    this.sprite = 'images/gem-blue.png';
+    this.gemFitX = 5;
+    this.gemFitY = 25;
     this.randomizeAppear();
 }
 
@@ -142,7 +143,7 @@ Gem.prototype.randomizeAppear = function() {
     this.xCol = randomize(0,6) - 1;
     this.x = this.xCol * trackWidth;
     this.yCol = randomize(0,4);
-    this.y = this.yCol * trackHeight - 25;
+    this.y = this.yCol * trackHeight - this.gemFitY;
 }
 
 Gem.prototype.render = function() {
