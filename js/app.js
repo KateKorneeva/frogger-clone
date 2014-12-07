@@ -62,6 +62,7 @@ Enemy.prototype.startBug = function() {
 var Player = function() {
     this.sprite = 'images/char-boy.png';
     this.dScoreRow = 10;
+    this.dScoreGem = 20;
     this.score = 0;
     this.startPlayer();
     this.handleInput();

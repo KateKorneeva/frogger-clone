@@ -81,6 +81,7 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         checkCollisions();
+        checkGemPicks();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -105,6 +106,16 @@ var Engine = (function(global) {
             {
                 player.startPlayer();
             }
+        }
+    }
+    function checkGemPicks() {
+        if ( ( player.x <= gem.x + trackWidth ) && 
+            ( player.x > gem.x - trackWidth) &&
+            ( player.y <= gem.y + trackHeight ) &&
+            ( player.y > gem.y - trackHeight)) 
+        {
+            player.countScore(player.dScoreGem);
+            gem.randomizeAppear();
         }
     }
 
