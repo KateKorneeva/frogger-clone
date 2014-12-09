@@ -112,22 +112,18 @@ var Engine = (function(global) {
     }
 
     function checkGemPicks() {
-        if ( ( player.x <= gemOrange.x + trackWidth - gemOrange.gemFitX) &&
-            ( player.x > gemOrange.x - trackWidth + gemOrange.gemFitX) &&
-            ( player.y <= gemOrange.y + trackHeight - gemOrange.gemFitY ) &&
-            ( player.y > gemOrange.y - trackHeight + gemOrange.gemFitY ))
-        {
-            player.countScore(gemOrange.dScoreGem);
-            gemOrange.randomizeAppear();
-        }
+        for (var i = 0, max = gems.length; i < max; i++) {
+            var dX = trackWidth - gems[i].gemFitX;
+            var dY = trackHeight - gems[i].gemFitY;
 
-        if ( ( player.x <= gemGreen.x + trackWidth - gemGreen.gemFitX) &&
-            ( player.x > gemGreen.x - trackWidth + gemGreen.gemFitX) &&
-            ( player.y <= gemGreen.y + trackHeight - gemGreen.gemFitY ) &&
-            ( player.y > gemGreen.y - trackHeight + gemGreen.gemFitY ))
-        {
-            player.countScore(gemGreen.dScoreGem);
-            gemGreen.randomizeAppear();
+            if ( (player.x <= gems[i].x + dX) &&
+                 (player.x > gems[i].x - dX) &&
+                 (player.y <= gems[i].y + dY) &&
+                 (player.y > gems[i].y - dY) )
+            {
+                player.countScore(gems[i].dScoreGem);
+                gems[i].randomizeAppear();
+            }
         }
     }
 
@@ -187,8 +183,9 @@ var Engine = (function(global) {
         });
 
         player.render();
-        gemOrange.render();
-        gemGreen.render();
+        gems.forEach(function(gem) {
+            gem.render();
+        });
     }
 
     /* This function does nothing but it could have been a good place to

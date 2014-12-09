@@ -1,8 +1,3 @@
-var trackWidth = 101;
-var trackHeight = 83;
-var la = true;
-
-
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -22,7 +17,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x = this.x + this.dx;
+    this.x = this.x + (this.dx * dt);
     if (this.x > canvas.width) {
         this.startBug();
     }
@@ -55,7 +50,7 @@ Enemy.prototype.randomizeRoad = function() {
 Enemy.prototype.startBug = function() {
     this.x = -50;
     this.y = this.randomizeRoad();
-    this.dx = this.randomizeSpeed(1,5);
+    this.dx = this.randomizeSpeed(50,200);
 }
 
 // Now write your own player class
@@ -124,6 +119,7 @@ Player.prototype.handleInput = function(key) {
 Player.prototype.startPlayer = function() {
     this.x = 200;
     this.y = 415;
+    // alert("Your score is " + this.score);
 }
 
 Player.prototype.countScore = function(dScore) {
@@ -168,20 +164,31 @@ var GemGreen = function() {
 GemGreen.prototype = Object.create(Gem.prototype);
 GemGreen.prototype.constructor  = Gem;
 
+var GemBlue = function() {
+    Gem.call(this);
+    this.sprite = 'images/gem-blue.png';
+    this.dScoreGem = 40;
+}
+
+GemBlue.prototype = Object.create(Gem.prototype);
+GemBlue.prototype.constructor  = Gem;
+
 // Default global random function
 var randomize = function(max, min) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+
+var trackWidth = 101;
+var trackHeight = 83;
+var la = true;
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var allEnemies = [new Enemy(), new Enemy(), new Enemy()];
-
 var player = new Player();
-
-var gemOrange = new GemOrange();
-var gemGreen = new GemGreen();
+var gems = [new GemOrange(), new GemGreen(), new GemBlue()];
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
