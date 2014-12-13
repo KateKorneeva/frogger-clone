@@ -21,12 +21,15 @@ var Engine = (function(global) {
      */
     var doc = global.document,
         win = global.window,
+        scoreDispl = doc.createElement('div'),
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
         lastTime;
 
     canvas.width = 505;
     canvas.height = 606;
+    scoreDispl.id = 'score-displ';
+    doc.body.appendChild(scoreDispl);
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -67,7 +70,6 @@ var Engine = (function(global) {
         reset();
         lastTime = Date.now();
         main();
-        var la = true;
     }
 
     /* This function is called by main (our game loop) and itself calls all
@@ -105,7 +107,8 @@ var Engine = (function(global) {
                 ( player.x > allEnemies[en].x - allEnemies[en].dx) &&
                 ( player.y === allEnemies[en].y + 7 ) 
                 )
-            {
+            {   
+                player.score = 0;
                 player.startPlayer();
             }
         }
@@ -218,4 +221,5 @@ var Engine = (function(global) {
      */
     global.ctx = ctx;
     global.canvas = canvas;
+    global.scoreDispl = scoreDispl;
 })(this);

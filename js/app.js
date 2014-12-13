@@ -17,7 +17,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    this.x = this.x + (this.dx * dt);
+    this.x = this.x + this.dx;
     if (this.x > canvas.width) {
         this.startBug();
     }
@@ -50,7 +50,7 @@ Enemy.prototype.randomizeRoad = function() {
 Enemy.prototype.startBug = function() {
     this.x = -50;
     this.y = this.randomizeRoad();
-    this.dx = this.randomizeSpeed(50,200);
+    this.dx = this.randomizeSpeed(1,5);
 }
 
 // Now write your own player class
@@ -66,7 +66,7 @@ var Player = function() {
 }
 
 Player.prototype.update = function(dt) {
-
+    this.displayScore(this.score);
 }
 
 Player.prototype.render = function() {
@@ -125,6 +125,9 @@ Player.prototype.startPlayer = function() {
 Player.prototype.countScore = function(dScore) {
     this.dScore = dScore;
     this.score = this.score + this.dScore;
+}
+Player.prototype.displayScore = function(score) {
+    scoreDispl.innerHTML = 'Your score is: ' + score;
 }
 
 var Gem = function() {
