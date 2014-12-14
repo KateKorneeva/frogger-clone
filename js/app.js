@@ -1,23 +1,21 @@
 // Enemies our player must avoid
 var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.firstTrackY = 76;
+    // dTrack variable allows bugs stay at the middle of blocks
     this.dTrack = trackHeight;
+    // Position bug and give it speed value when bug is initialised
     this.startBug();
 }
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-    this.x = this.x + this.dx;
+    // Any movement is multiplied by the dt parameter.
+    // This ensures that the game runs at the same speed
+    // for all computers.
+    this.x = this.x + (this.dx * dt);
     if (this.x > canvas.width) {
         this.startBug();
     }
@@ -39,7 +37,7 @@ Enemy.prototype.randomizeRoad = function() {
     var locY;
     for (var i = 0; i < 3; i++) {
         if (track === (i+1) ) {
-            locY = this.firstTrackY + ( this.dTrack * i );
+            locY = firstTrackY + ( this.dTrack * i );
         }    
     }
     return locY;
@@ -58,8 +56,6 @@ Enemy.prototype.startBug = function() {
 // a handleInput() method.
 var Player = function() {
     this.sprite = 'images/char-boy.png';
-    this.dScoreRow = 10;
-    this.dScoreGem = 20;
     this.score = 0;
     this.startPlayer();
     this.handleInput();
@@ -96,7 +92,6 @@ Player.prototype.handleInput = function(key) {
     case 'up':
         if (this.y > 0) {
             this.y = this.y - this.dy;
-            this.countScore(this.dScoreRow);
         }
         else {
             this.y = this.y;
@@ -152,7 +147,7 @@ Gem.prototype.render = function() {
 var GemOrange = function() {
     Gem.call(this);
     this.sprite = 'images/gem-orange.png';
-    this.dScoreGem = 30;
+    this.dScoreGem = 10;
 }
 
 GemOrange.prototype = Object.create(Gem.prototype);
@@ -161,7 +156,7 @@ GemOrange.prototype.constructor = Gem;
 var GemGreen = function() {
     Gem.call(this);
     this.sprite = 'images/gem-green.png';
-    this.dScoreGem = 40;
+    this.dScoreGem = 20;
 }
 
 GemGreen.prototype = Object.create(Gem.prototype);
@@ -170,7 +165,7 @@ GemGreen.prototype.constructor  = Gem;
 var GemBlue = function() {
     Gem.call(this);
     this.sprite = 'images/gem-blue.png';
-    this.dScoreGem = 40;
+    this.dScoreGem = 30;
 }
 
 GemBlue.prototype = Object.create(Gem.prototype);
@@ -184,6 +179,7 @@ var randomize = function(max, min) {
 
 var trackWidth = 101;
 var trackHeight = 83;
+var firstTrackY = 76;
 var la = true;
 
 // Now instantiate your objects.
