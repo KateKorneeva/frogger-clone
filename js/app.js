@@ -4,7 +4,7 @@ var Enemy = function() {
     // a helper to easily load images
     this.sprite = 'images/enemy-bug.png';
     // dTrack variable allows bugs stay at the middle of blocks
-    this.dTrack = trackHeight;
+    this.dTrack = rowHeight;
     // Position enemy and give it speed value when emeny is initialised
     this.startBug();
 }
@@ -80,8 +80,8 @@ Player.prototype.render = function() {
 // If statements check that the character will stay 
 // inside the game field after it moves.
 Player.prototype.handleInput = function(key) {
-    this.dx = trackWidth;
-    this.dy = trackHeight;
+    this.dx = colWidth;
+    this.dy = rowHeight;
     switch (key) {
     case 'left': 
         if (this.x > 0) {
@@ -147,9 +147,9 @@ var Gem = function() {
 // Randomisation of gem location
 Gem.prototype.randomizeAppear = function() {
     this.xCol = randomize(0,6) - 1;
-    this.x = this.xCol * trackWidth;
+    this.x = this.xCol * colWidth;
     this.yCol = randomize(0,4);
-    this.y = this.yCol * trackHeight - gemFitY;
+    this.y = this.yCol * rowHeight - gemFitY;
 }
 
 // Draw the gem on the screen
@@ -202,8 +202,8 @@ var randomize = function(max, min) {
 }
 
 // Set of global variables with digital values.
-var trackWidth = 101,
-    trackHeight = 83,
+var colWidth = 101,
+    rowHeight = 83,
     firstTrackY = 76,
     playerStartX = 200,
     playerStartY = 415,
