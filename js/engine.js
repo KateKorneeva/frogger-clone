@@ -116,8 +116,8 @@ var Engine = (function(global) {
 
     function checkGemPicks() {
         for (var i = 0, max = gems.length; i < max; i++) {
-            var dX = trackWidth - gems[i].gemFitX;
-            var dY = trackHeight - gems[i].gemFitY;
+            var dX = trackWidth - gemFitX;
+            var dY = trackHeight - gemFitY;
 
             if ( (player.x <= gems[i].x + dX) &&
                  (player.x > gems[i].x - dX) &&
