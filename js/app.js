@@ -48,7 +48,7 @@ Enemy.prototype.randomizeRoad = function() {
 Enemy.prototype.startBug = function() {
     this.x = -50;
     this.y = this.randomizeRoad();
-    this.dx = this.randomizeSpeed(1,5);
+    this.dx = this.randomizeSpeed(50,200);
 }
 
 // Now write your own player class
