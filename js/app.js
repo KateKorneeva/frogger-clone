@@ -35,8 +35,8 @@ Enemy.prototype.randomizeSpeed = function(min, max) {
 
 // Randomization of road choice
 Enemy.prototype.randomizeRoad = function() {
-    var track = randomize(0,4);
-    var locY;
+    var track = randomize(0,4),
+        locY;
     for (var i = 0; i < 3; i++) {
         if (track === (i+1) ) {
             locY = firstTrackY + ( this.dTrack * i );
@@ -214,9 +214,9 @@ var colWidth = 101,
     highScore = 30;
 
 // Here objects are instantiated.
-var allEnemies = [new Enemy(), new Enemy(), new Enemy()];
-var player = new Player();
-var gems = [new GemOrange(), new GemGreen(), new GemBlue()];
+var allEnemies = [new Enemy(), new Enemy(), new Enemy()],
+    player = new Player(),
+    gems = [new GemOrange(), new GemGreen(), new GemBlue()];
 
 // This listens for key presses and sends the keys to
 // Player.handleInput() method.
