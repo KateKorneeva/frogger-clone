@@ -1,3 +1,9 @@
 body {
     text-align: center;
 }
+#score-displ {
+	width: 500px;
+	margin: auto;
+	font-family: 'Indie Flower', cursive;
+	font-size: 3em;
+}
