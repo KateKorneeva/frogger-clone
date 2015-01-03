@@ -4,6 +4,9 @@ body {
 #score-displ {
 	width: 500px;
 	margin: auto;
-	font-family: 'Indie Flower', cursive;
+	font-family: 'Poiret One', cursive;
 	font-size: 3em;
+	margin-top: 20px;
+	margin-bottom: -20px;
+	color: #2c3e50;
 }
