@@ -2,7 +2,7 @@
 var Enemy = function() {
     // The image/sprite for enemies, this uses
     // a helper to easily load images
-    this.sprite = 'images/enemy-bug.png';
+    this.sprite = 'images/build/enemy-bug.png';
     // dTrack variable allows bugs stay at the middle of blocks
     this.dTrack = rowHeight;
     // Position enemy and give it speed value when emeny is initialised
@@ -57,7 +57,7 @@ Enemy.prototype.startBug = function() {
 var Player = function() {
     // The image/sprite for character, this uses
     // a helper to easily load images    
-    this.sprite = 'images/char-boy.png';
+    this.sprite = 'images/build/char-boy.png';
     // Set initial score value to 0
     this.score = 0;
     // Position character at the bottom of the game field
@@ -160,7 +160,7 @@ Gem.prototype.render = function() {
 var GemOrange = function() {
     // This inherits properties from Gem superclass
     Gem.call(this);
-    this.sprite = 'images/gem-orange.png';
+    this.sprite = 'images/build/gem-orange.png';
     // Set score quantity gained for orange
     // gem collection to lowScore variable value
     this.dScoreGem = lowScore;
@@ -173,7 +173,7 @@ GemOrange.prototype.constructor = Gem;
 var GemGreen = function() {
     // This inherits properties from Gem superclass
     Gem.call(this);
-    this.sprite = 'images/gem-green.png';
+    this.sprite = 'images/build/gem-green.png';
     // Set score quantity gained for green
     // gem collection to middle variable value    
     this.dScoreGem = middleScore;
@@ -186,7 +186,7 @@ GemGreen.prototype.constructor  = Gem;
 var GemBlue = function() {
     // This inherits properties from Gem superclass
     Gem.call(this);
-    this.sprite = 'images/gem-blue.png';
+    this.sprite = 'images/build/gem-blue.png';
     // Set score quantity gained for blue
     // gem collection to highScore variable value    
     this.dScoreGem = highScore;
