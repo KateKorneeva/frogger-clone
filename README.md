@@ -1,5 +1,6 @@
-Frontend Nanodegree arcade game "Frogger"
-=========================================
+Arcade game "Frogger"
+=====================
+This game is done as part of Object-Oriented JavaScript course at Udacity https://www.udacity.com/course/ud015.
 
 To run the game open index.html in browser or open demo page http://korneevaed.github.io/frogger-clone.
 
